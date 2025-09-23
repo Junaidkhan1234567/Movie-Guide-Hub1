@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Guide Hub</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Vend+Sans:wght@400;700&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Vend Sans", sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
+      /* Dark overlay + background image */
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url("https://i.postimg.cc/wMFYYJx7/91mdpt2-ZCFL-AC-SL1500.jpg") no-repeat center center/cover;
+        background-size: body {
+  /* Dark overlay + background image */
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+    url("https://i.postimg.cc/wMFYYJx7/91mdpt2-ZCFL-AC-SL1500.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+/* Mobile ke liye adjustment */
+@media (max-width: 768px) {
+  body {
+    background-position: top center;  /* image ka upar wala part dikhayega */
+    background-size: contain;         /* image poori screen me fit hogi */
+    background-repeat: no-repeat;
+    background-color: #000;           /* agar thoda gap bache to black fill ho jaye */
+  }
+};
+    }
+
+    nav {
+      background: #210B0B;
+      color: #FFF7F7;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      font-size: 18px;
+    }
+
+    main {
+      flex: 1; /* Footer ko push karega niche */
+      max-width: 1200px;
+      margin: 0 auto;
+      margin-block: 38px;
+      padding: 0 15px;
+    }
+
+    main section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 70vh;
+    }
+
+    .movie-container {
+      display: flex;
+      flex-wrap: wrap;
+      background: #3B3737;
+      box-shadow: 0px 0px 10px #B2A5A5;
+      width: 100%;
+      border-radius: 2px;
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    .movie-poster {
+      flex: 1 1 300px;
+      text-align: center;
+      background: #f4f4f4;
+    }
+
+    .movie-poster img {
+      width: 100%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 5px 0 0 5px;
+      object-fit: cover;
+    }
+
+    .movie-info {
+      flex: 2 1 400px;
+      padding: 15px;
+    }
+
+    .movie-info p {
+      line-height: 1.4;
+      margin: 10px 0;
+      padding: 5px;
+      text-align: left;
+    }
+
+    .movie-info h2 {
+      text-align: center;
+      font-size: 28px;
+      margin: 15px 0 10px 0;
+    }
+
+    .movie-info .rating {
+      display: flex;
+      justify-content: center;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .movie-genre {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .movie-genre p {
+      background: #13C2CE;
+      color: #E8E8E8;
+      padding: 5px 14px;
+      margin: 5px;
+      border: 2px solid #261F1F;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .controls {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background: #4DEBF4;
+      color: black;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .controls button:hover {
+      background: #4DEBF9;
+      color: black;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto;
+      max-width: 600px;
+      gap: 10px;
+      padding: 0 15px;
+    }
+
+    .search-container input {
+      flex: 1;
+      padding: 5px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-top: 25px;
+    }
+
+    .search-container button {
+      padding: 5px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background:  #4DEBF4;
+      color: black;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 25px;
+    }
+
+    .search-container button:hover {
+      background: #4DEBF0;
+      color: black;
+    }
+
+    footer {
+      text-align: center;
+      background: #090907;
+      color: #FFFFFA;
+      padding-block: 20px;
+      font-size: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .movie-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .movie-poster img {
+        max-width: 90%;
+        border-radius: 5px 5px 0 0;
+      }
+
+      .movie-info {
+        width: 100%;
+        text-align: center;
+      }
+
+      .movie-info p {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <h1>🎬 Movie Guide Hub</h1>
+    </div>
+  </nav>
+
+  <main>
+    <section>
+      <div class="movie-container">
+        <h2>Click Next to See Random Movies!</h2>
+      </div>
+    </section>
+
+    <div class="controls">
+      <button id="prevBtn">⬅ Back</button>
+      <button id="nextBtn">Next ➡</button>
+    </div>
+
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search any movie...">
+      <button id="searchBtn">Search</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; copyright. powered- Wolverine</p>
+  </footer>
+
+  <script>
+    const movieContainer = document.querySelector('.movie-container');
+    const prevBtn = document.querySelector('#prevBtn');
+    const nextBtn = document.querySelector('#nextBtn');
+    const searchInput = document.querySelector('#searchInput');
+    const searchBtn = document.querySelector('#searchBtn');
+
+    const myAPIKey = "fc1fef96";
+
+    const movieNames = [
+      "Inception", "Interstellar", "The Dark Knight", "Avengers Endgame",
+      "Iron Man", "Dangal", "PK", "3 Idiots", "Sholay", "Pathaan",
+      "Koi Mil Gaya", "Kabir Singh", "Animal", "War", "Tiger Zinda Hai",
+      "Krrish", "Baahubali", "Pushpa", "KGF", "Jawan"
+    ];
+
+    let history = [];  
+    let currentIndex = -1;
+
+    const fallbackPoster = "https://via.placeholder.com/350x500?text=Poster+Not+Found";
+
+    const getMovieinfo = async (title) => {
+      const url = `https://www.omdbapi.com/?apikey=${myAPIKey}&t=${encodeURIComponent(title)}`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.Response === "True") {
+        showMovieData(data);
+      } else {
+        movieContainer.innerHTML = `<p style="padding:20px; color:white;">Movie not found!</p>`;
+      }
+    };
+
+    const showMovieData = (data) => {
+      movieContainer.innerHTML = "";
+
+      const { Title, imdbRating, Genre, Runtime, Released, Actors, Plot, Poster } = data;
+
+      const moviePosterElement = document.createElement('div');
+      moviePosterElement.classList.add('movie-poster');
+      moviePosterElement.innerHTML = `
+        <img src="${Poster !== "N/A" ? Poster : fallbackPoster}" 
+             alt="${Title} Poster" 
+             onerror="this.onerror=null;this.src='${fallbackPoster}';"/>`;
+
+      const movieElement = document.createElement('div');
+      movieElement.classList.add('movie-info');
+      movieElement.innerHTML = `
+        <h2>${Title}</h2>
+        <p class="rating"><strong>Rating: ⭐</strong> ${imdbRating}</p>
+      `;
+
+      const movieGenreElement = document.createElement('div');
+      movieGenreElement.classList.add('movie-genre');
+      Genre.split(",").forEach(element => {
+        const p = document.createElement('p');
+        p.innerText = element.trim();
+        movieGenreElement.appendChild(p);
+      });
+
+      movieElement.appendChild(movieGenreElement);
+
+      movieElement.innerHTML += `
+        <p><strong>Released Date: </strong>${Released}</p>
+        <p><strong>Duration: </strong>${Runtime}</p>
+        <p><strong>Cast: </strong>${Actors}</p>
+        <p><strong>Plot: </strong>${Plot}</p>
+      `;
+
+      movieContainer.appendChild(moviePosterElement);
+      movieContainer.appendChild(movieElement);
+    };
+
+    const showNextMovie = () => {
+      const randomIndex = Math.floor(Math.random() * movieNames.length);
+      const movieTitle = movieNames[randomIndex];
+      history.push(movieTitle);
+      currentIndex = history.length - 1;
+      getMovieinfo(movieTitle);
+    };
+
+    const showPrevMovie = () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        const movieTitle = history[currentIndex];
+        getMovieinfo(movieTitle);
+      }
+    };
+
+    const searchMovie = () => {
+      const query = searchInput.value.trim();
+      if (query !== "") {
+        history.push(query);
+        currentIndex = history.length - 1;
+        getMovieinfo(query);
+      }
+    };
+
+    nextBtn.addEventListener("click", showNextMovie);
+    prevBtn.addEventListener("click", showPrevMovie);
+    searchBtn.addEventListener("click", searchMovie);
+
+    searchInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        searchMovie();
+      }
+    });
+
+    showNextMovie();
+  </script>
+</body>
+</html>
