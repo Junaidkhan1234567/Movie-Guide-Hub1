@@ -181,31 +181,26 @@
     const searchInput = document.getElementById("searchInput");
 
     const keywords = [
-  // 🎬 Hollywood
-  "Batman","Superman","Iron Man","Spider-Man","Thor","Avengers","Captain America",
-  "Doctor Strange","Black Panther","Ant-Man","Deadpool","Logan","Wonder Woman",
-  "Aquaman","The Dark Knight","Joker","Man of Steel","Justice League",
-  "Guardians of the Galaxy","Eternals","Shang-Chi","The Incredible Hulk","X-Men",
-  "Venom","Morbius","The Flash","Green Lantern","Fantastic Four","Blade",
-  "Daredevil","Catwoman","Constantine","The Matrix","Inception","Interstellar",
-  "Avatar","Titanic","Gladiator","Braveheart","The Godfather",
-
-  // 🎥 Bollywood
-  "Dangal","PK","3 Idiots","Taare Zameen Par","Lagaan","Swades","Chak De India",
-  "Jodhaa Akbar","Bajrangi Bhaijaan","Sultan","My Name Is Khan","Kal Ho Naa Ho",
-  "Kabhi Khushi Kabhie Gham","Mohabbatein","Dilwale Dulhania Le Jayenge",
-  "Dil To Pagal Hai","Kuch Kuch Hota Hai","Kabir Singh","Sanju",
-  "Zindagi Na Milegi Dobara","Barfi","Rockstar","Yeh Jawaani Hai Deewani",
-  "War","Pathaan","Jawan","Gadar","Gully Boy","Andhadhun","Article 15",
-
-  // 🎞️ Tollywood
-  "Baahubali: The Beginning","Baahubali 2: The Conclusion","RRR",
-  "Pushpa: The Rise","Ala Vaikunthapurramuloo","Arjun Reddy","Geetha Govindam",
-  "Srimanthudu","Maharshi","Bharat Ane Nenu","Pokiri","Magadheera","Eega",
-  "Janatha Garage","Rangasthalam","Dhruva","Sye","Chatrapathi","Simhadri",
-  "Indra","Narasimha Naidu","Okkadu","Athadu","Temper","Dookudu","Businessman",
-  "Nenokkadine","Jai Lava Kusa","Khaidi No.150","Saaho"
-];
+      "Batman","Superman","Iron Man","Spider-Man","Thor","Avengers","Captain America",
+      "Doctor Strange","Black Panther","Ant-Man","Deadpool","Logan","Wonder Woman",
+      "Aquaman","The Dark Knight","Joker","Man of Steel","Justice League",
+      "Guardians of the Galaxy","Eternals","Shang-Chi","The Incredible Hulk","X-Men",
+      "Venom","Morbius","The Flash","Green Lantern","Fantastic Four","Blade",
+      "Daredevil","Catwoman","Constantine","The Matrix","Inception","Interstellar",
+      "Avatar","Titanic","Gladiator","Braveheart","The Godfather",
+      "Dangal","PK","3 Idiots","Taare Zameen Par","Lagaan","Swades","Chak De India",
+      "Jodhaa Akbar","Bajrangi Bhaijaan","Sultan","My Name Is Khan","Kal Ho Naa Ho",
+      "Kabhi Khushi Kabhie Gham","Mohabbatein","Dilwale Dulhania Le Jayenge",
+      "Dil To Pagal Hai","Kuch Kuch Hota Hai","Kabir Singh","Sanju",
+      "Zindagi Na Milegi Dobara","Barfi","Rockstar","Yeh Jawaani Hai Deewani",
+      "War","Pathaan","Jawan","Gadar","Gully Boy","Andhadhun","Article 15",
+      "Baahubali: The Beginning","Baahubali 2: The Conclusion","RRR",
+      "Pushpa: The Rise","Ala Vaikunthapurramuloo","Arjun Reddy","Geetha Govindam",
+      "Srimanthudu","Maharshi","Bharat Ane Nenu","Pokiri","Magadheera","Eega",
+      "Janatha Garage","Rangasthalam","Dhruva","Sye","Chatrapathi","Simhadri",
+      "Indra","Narasimha Naidu","Okkadu","Athadu","Temper","Dookudu","Businessman",
+      "Nenokkadine","Jai Lava Kusa","Khaidi No.150","Saaho"
+    ];
 
     let history = [];
     let currentIndex = -1;
@@ -230,7 +225,15 @@
         const data = await res.json();
 
         if (data.Response === "False") {
+          alert("❌ MOVIE NOT FOUND");
           titleEl.innerHTML = "<b>Title:</b> Movie not found!";
+          poster.src = "";
+          typeEl.innerHTML = "<b>Type:</b> ";
+          ratingEl.innerHTML = "<b>Rating:</b> ";
+          releaseEl.innerHTML = "<b>Release Date:</b> ";
+          runtimeEl.innerHTML = "<b>Runtime:</b> ";
+          genresEl.innerHTML = "<b>Genres:</b>";
+          plotEl.innerHTML = "<b>Story Line:</b>";
           loadingOverlay.style.display = "none";
           return;
         }
@@ -254,6 +257,7 @@
         }
 
       } catch {
+        alert("⚠️ Error fetching movie!");
         titleEl.innerHTML = "<b>Title:</b> Error fetching movie.";
       } finally {
         loadingOverlay.style.display = "none"; // ✅ Hide overlay after load
